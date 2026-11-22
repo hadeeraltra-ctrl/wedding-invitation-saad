@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#eee3cf">
+
+<title>سعد ♡ فاطمة | دعوة زفاف</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold: #e3c58d;
+  --cream: #fff7e9;
+  --dark: #251c1b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--dark);
+  color: var(--cream);
+  font-family: "El Messiri", sans-serif;
+  overflow-x: hidden;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* الخلفية في كل صفحات الدعوة */
+
+.site-background {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+
+  background-image: url("./couple-background.jpg.jpeg");
+  background-color: #251c1b;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.site-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+
+  background: linear-gradient(
+    180deg,
+    rgba(23,17,17,0.54),
+    rgba(23,17,17,0.76)
+  );
+
+  pointer-events: none;
+}
+
+/* غلاف البسملة */
+
+#cover {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  padding: 25px 16px max(36px, env(safe-area-inset-bottom));
+
+  background-color: #faf5e9;
+  background-image: url("./cover-basmala.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+#cover.closed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* الأزرار */
+
+.button {
+  display: inline-block;
+  margin: 10px 4px;
+  padding: 13px 25px;
+
+  border: 1px solid #ebd5a9;
+  border-radius: 40px;
+
+  background: linear-gradient(
+    135deg,
+    #c9a76c,
+    #795829
+  );
+
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+
+  box-shadow: 0 5px 22px rgba(0,0,0,0.3);
+}
+
+.button:hover {
+  filter: brightness(1.08);
+}
+
+/* الصفحات */
+
+.page {
+  position: relative;
+
+  min-height: 100vh;
+  min-height: 100svh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 70px 18px 85px;
+
+  text-align: center;
+
+  border-bottom: 1px solid rgba(228,198,140,0.3);
+}
+
+.panel {
+  width: 100%;
+  max-width: 720px;
+
+  padding: 35px;
+
+  background: rgba(28,20,20,0.43);
+
+  border: 1px solid rgba(228,198,140,0.65);
+  border-radius: 22px;
+
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+
+  box-shadow: 0 16px 45px rgba(0,0,0,0.2);
+}
+
+h1,
+h2 {
+  font-family: "Amiri", serif;
+  color: #ffe0a7;
+  margin: 10px 0 18px;
+  line-height: 1.4;
+}
+
+h1 {
+  font-size: clamp(55px, 11vw, 100px);
+}
+
+h2 {
+  font-size: clamp(37px, 6vw, 58px);
+}
+
+p {
+  font-size: clamp(16px, 2.4vw, 21px);
+  line-height: 1.9;
+  margin: 12px 0;
+}
+
+.subtitle {
+  color: #ffebcc;
+}
+
+.verse {
+  font-family: "Amiri", serif;
+  font-size: clamp(21px, 3.4vw, 30px);
+  line-height: 1.9;
+}
+
+.ornament {
+  color: var(--gold);
+  font-size: 28px;
+  margin: 14px 0;
+}
+
+.family {
+  font-family: "Amiri", serif;
+  font-size: clamp(27px, 4vw, 38px);
+  color: #ffe1a6;
+}
+
+/* سهم الانتقال بين الصفحات */
+
+.next {
+  position: absolute;
+  bottom: 18px;
+
+  color: #ffebc8;
+  font-size: 14px;
+}
+
+.next b {
+  display: block;
+  font-size: 27px;
+  line-height: 1;
+}
+
+/* العد التنازلي */
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 10px;
+  margin: 26px auto;
+}
+
+.time {
+  min-width: 0;
+  padding: 12px 3px;
+
+  border: 1px solid rgba(228,198,140,0.5);
+  border-radius: 12px;
+
+  background: rgba(255,248,237,0.1);
+}
+
+.time strong {
+  display: block;
+
+  color: #ffe1aa;
+  font-size: clamp(24px, 5vw, 42px);
+}
+
+.time span {
+  font-size: 13px;
+}
+
+.line {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.line:last-child {
+  border: 0;
+}
+
+/* برنامج الحفل */
+
+.program {
+  margin: 12px 0;
+  padding: 15px 8px;
+
+  border: 1px solid rgba(228,198,140,0.5);
+  border-radius: 12px;
+
+  background: rgba(255,248,237,0.07);
+
+  font-size: clamp(17px, 2.5vw, 22px);
+}
+
+.program b {
+  color: var(--gold);
+  margin-left: 10px;
+}
+
+/* صفحة التهنئة */
+
+form {
+  text-align: right;
+  margin: 25px auto 0;
+}
+
+label {
+  display: block;
+  margin: 15px 0 6px;
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+
+  padding: 13px;
+
+  border: 1px solid #d6bd90;
+  border-radius: 12px;
+
+  background: #fffdf8;
+  color: #342720;
+
+  font-size: 16px;
+}
+
+textarea {
+  min-height: 145px;
+  resize: vertical;
+}
+
+.counter {
+  display: block;
+  text-align: left;
+  font-size: 13px;
+  margin: 5px 0;
+}
+
+form .button {
+  display: block;
+  margin: 20px auto;
+}
+
+#guestStatus {
+  text-align: center;
+  min-height: 24px;
+  font-size: 14px;
+}
+
+/* زر الموسيقى */
+
+#musicBtn {
+  position: fixed;
+
+  left: 14px;
+  bottom: 14px;
+
+  z-index: 60;
+
+  width: 56px;
+  height: 56px;
+
+  display: none;
+
+  border: 2px solid #d4b276;
+  border-radius: 50%;
+
+  background: #fff8e9;
+
+  font-size: 25px;
+
+  box-shadow: 0 5px 24px rgba(0,0,0,0.3);
+}
+
+#musicBtn.visible {
+  display: block;
+}
+
+/* الموبايل بالطول */
+
+@media (max-width: 600px) {
+
+  .page {
+    padding: 50px 13px 80px;
+  }
+
+  .panel {
+    padding: 22px 15px;
+    border-radius: 17px;
+  }
+
+  .countdown {
+    gap: 6px;
+  }
+
+  .time {
+    padding: 10px 2px;
+  }
+
+  #cover {
+    background-size: contain;
+  }
+
+  .button {
+    padding: 12px 19px;
+  }
+}
+
+/* الموبايل بالعرض */
+
+@media (orientation: landscape) and (max-height: 550px) {
+
+  .page {
+    min-height: 100svh;
+    height: auto;
+    padding: 35px 18px 70px;
+  }
+
+  .panel {
+    width: min(92%, 820px);
+    padding: 19px 27px;
+  }
+
+  h1 {
+    font-size: clamp(45px, 8vw, 70px);
+  }
+
+  h2 {
+    font-size: clamp(33px, 5vw, 46px);
+  }
+
+  p {
+    line-height: 1.65;
+  }
+
+  .next {
+    bottom: 11px;
+  }
+
+  #cover {
+    background-size: contain;
+    padding-bottom: 12px;
+  }
+
+  .countdown {
+    max-width: 580px;
+    margin: 13px auto;
+  }
+
+  .time {
+    padding: 6px 2px;
+  }
+}
+
+/* شاشات الكمبيوتر */
+
+@media (min-width: 1200px) {
+
+  .page {
+    padding: 85px 24px 105px;
+  }
+
+  .panel {
+    max-width: 760px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- الخلفية العامة -->
+
+<div class="site-background"></div>
+<div class="site-overlay"></div>
+
+<!-- الأغنية -->
+
+<audio id="music" preload="auto" loop>
+  <source src="./wedding-song.mp3.mpeg" type="audio/mpeg">
+</audio>
+
+<!-- غلاف البسملة -->
+
+<div id="cover">
+
+  <button class="button" id="openBtn" type="button">
+    افتح دعوتنا ♡
+  </button>
+
+</div>
+
+<!-- زر التحكم في الموسيقى -->
+
+<button id="musicBtn" type="button" aria-label="تشغيل أو إيقاف الموسيقى">
+  🔇
+</button>
+
+<main>
+
+<!-- الصفحة الأولى: دعوة الزفاف -->
+
+<section class="page" id="invitation">
+
+  <article class="panel">
+
+    <p class="subtitle">بكل الحب والفرح</p>
+
+    <p class="verse">
+      ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ
+      أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم
+      مَّوَدَّةً وَرَحْمَةً ﴾
+    </p>
+
+    <div class="ornament">❧ ✧ ❧</div>
+
+    <p>تتشرف بدعوتكم</p>
+
+    <div class="family">عائلة آل سلامة</div>
+
+    <p>و</p>
+
+    <div class="family">عائلة آل هيبة</div>
+
+    <p>لحضور حفل زفاف</p>
+
+    <h1>سعد ♡ فاطمة</h1>
+
+    <p>الجمعة · ٤ ديسمبر ٢٠٢٦</p>
+
+    <p>
+      بارك الله لهما وبارك عليهما
+      وجمع بينهما في خير
+    </p>
+
+  </article>
+
+  <a class="next" href="#when">
+    مرر لأسفل
+    <b>⌄</b>
+  </a>
+
+</section>
+
+<!-- الصفحة الثانية: الموعد -->
+
+<section class="page" id="when">
+
+  <article class="panel">
+
+    <p class="subtitle">ننتظركم لنفرح معًا</p>
+
+    <h2>موعد ليلة العمر</h2>
+
+    <div class="ornament">✧</div>
+
+    <div class="line">
+      📅 الجمعة ٤ ديسمبر ٢٠٢٦
+    </div>
+
+    <div class="line">
+      🕔 من الساعة ٥ مساءً إلى ١١ مساءً
+    </div>
+
+    <p>الوقت المتبقي</p>
+
+    <div class="countdown">
+
+      <div class="time">
+        <strong id="days">00</strong>
+        <span>يوم</span>
+      </div>
+
+      <div class="time">
+        <strong id="hours">00</strong>
+        <span>ساعة</span>
+      </div>
+
+      <div class="time">
+        <strong id="minutes">00</strong>
+        <span>دقيقة</span>
+      </div>
+
+      <div class="time">
+        <strong id="seconds">00</strong>
+        <span>ثانية</span>
+      </div>
+
+    </div>
+
+    <p id="countdownText">
+      وجودكم هو أجمل هدية في يومنا
+    </p>
+
+    <button class="button" id="calendarBtn" type="button">
+      أضف الموعد إلى التقويم
+    </button>
+
+  </article>
+
+  <a class="next" href="#program">
+    مرر لأسفل
+    <b>⌄</b>
+  </a>
+
+</section>
+
+<!-- الصفحة الثالثة: برنامج الحفل -->
+
+<section class="page" id="program">
+
+  <article class="panel">
+
+    <p class="subtitle">ليلة من أجمل الذكريات</p>
+
+    <h2>برنامج الحفل</h2>
+
+    <div class="ornament">❧ ✧ ❧</div>
+
+    <div class="program">
+      <b>♡</b>
+      استقبال الأهل والأصدقاء
+    </div>
+
+    <div class="program">
+      <b>✧</b>
+      بداية الاحتفال والفرحة
+    </div>
+
+    <div class="program">
+      <b>♫</b>
+      أجمل لحظات ليلة العمر
+    </div>
+
+    <p>وجودكم يكمّل فرحتنا 🤍</p>
+
+  </article>
+
+  <a class="next" href="#venue">
+    مرر لأسفل
+    <b>⌄</b>
+  </a>
+
+</section>
+
+<!-- الصفحة الرابعة: المكان -->
+
+<section class="page" id="venue">
+
+  <article class="panel">
+
+    <p class="subtitle">نفرح بوجودكم</p>
+
+    <h2>مكان لقائنا</h2>
+
+    <div class="ornament">✧</div>
+
+    <div class="family">فيلا نعمة</div>
+
+    <p>المريوطية</p>
+
+    <p>
+      يسعدنا وصولكم ومشاركتنا فرحتنا.
+      افتحوا موقع القاعة مباشرةً على الخريطة.
+    </p>
+
+    <a
+      class="button"
+      href="https://maps.app.goo.gl/yvjLHs9ShSsRBSYM8"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      📍 الموقع على الخريطة
+    </a>
+
+  </article>
+
+  <a class="next" href="#share">
+    مرر لأسفل
+    <b>⌄</b>
+  </a>
+
+</section>
+
+<!-- الصفحة الخامسة: مشاركة الدعوة -->
+
+<section class="page" id="share">
+
+  <article class="panel">
+
+    <p class="subtitle">فرحتنا تكمل بوجودكم</p>
+
+    <h2>شاركوا دعوتنا</h2>
+
+    <div class="ornament">❧ ✧ ❧</div>
+
+    <p>
+      يسعدنا أن تشاركونا الدعوة مع أحبابكم
+    </p>
+
+    <button class="button" id="shareBtn" type="button">
+      💚 مشاركة عبر واتساب
+    </button>
+
+  </article>
+
+  <a class="next" href="#guestbook">
+    مرر لأسفل إلى التهنئة
+    <b>⌄</b>
+  </a>
+
+</section>
+
+<!-- الصفحة السادسة: تهنئة الضيوف -->
+
+<section class="page" id="guestbook">
+
+  <article class="panel">
+
+    <p class="subtitle">♡ من القلب للقلب ♡</p>
+
+    <h2>سيبوا لنا كلمة حلوة</h2>
+
+    <div class="ornament">❧ ✧ ❧</div>
+
+    <p>
+      وجودكم فرحة، وكلامكم ذكرى جميلة.
+      شاركونا دعوة صادقة أو تهنئة من القلب.
+    </p>
+
+    <form id="guestForm">
+
+      <label for="guestName">اسمك</label>
+
+      <input
+        id="guestName"
+        type="text"
+        maxlength="70"
+        placeholder="اكتب اسمك"
+        required
+      >
+
+      <label for="guestMessage">
+        رسالتك لسعد وفاطمة
+      </label>
+
+      <textarea
+        id="guestMessage"
+        maxlength="300"
+        placeholder="اكتب التهنئة"
+        required
+      ></textarea>
+
+      <span class="counter" id="counter">
+        0 / 300
+      </span>
+
+      <button class="button" type="submit">
+        💌 إرسال التهنئة عبر واتساب
+      </button>
+
+      <p id="guestStatus" role="status"></p>
+
+    </form>
+
+    <div class="ornament">♡ ✧ ♡</div>
+
+  </article>
+
+  <a class="next" href="#invitation">
+    بداية الدعوة
+    <b>⌃</b>
+  </a>
+
+</section>
+
+</main>
+
+<script>
+
+/* الموسيقى */
+
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+const cover = document.getElementById("cover");
+
+music.volume = 0.75;
+
+function syncMusic() {
+
+  musicBtn.textContent = music.paused ? "🔇" : "🔊";
+
+  musicBtn.setAttribute(
+    "aria-label",
+    music.paused ? "تشغيل الموسيقى" : "إيقاف الموسيقى"
+  );
+
+}
+
+function playMusic() {
+
+  try {
+
+    const request = music.play();
+
+    if (request && request.catch) {
+      request.catch(() => {
+        syncMusic();
+      });
+    }
+
+  } catch (error) {
+    syncMusic();
+  }
+
+}
+
+/* محاولة تشغيل الأغنية أول ما الرابط يفتح */
+
+document.addEventListener("DOMContentLoaded", () => {
+  playMusic();
+});
+
+window.addEventListener("load", () => {
+  if (music.paused) {
+    playMusic();
+  }
+});
+
+/* فتح الدعوة وتشغيل الصوت */
+
+document.getElementById("openBtn").addEventListener("click", () => {
+
+  if (music.paused) {
+    playMusic();
+  }
+
+  cover.classList.add("closed");
+
+  musicBtn.classList.add("visible");
+
+  setTimeout(() => {
+    cover.style.display = "none";
+  }, 1050);
+
+});
+
+/* التحكم في الموسيقى */
+
+musicBtn.addEventListener("click", () => {
+
+  if (music.paused) {
+    playMusic();
+  } else {
+    music.pause();
+  }
+
+});
+
+music.addEventListener("play", syncMusic);
+music.addEventListener("pause", syncMusic);
+music.addEventListener("error", syncMusic);
+
+syncMusic();
+
+/* العد التنازلي */
+
+const weddingDate = new Date(
+  "2026-12-04T17:00:00+02:00"
+).getTime();
+
+function countdown() {
+
+  let remaining = Math.max(
+    0,
+    weddingDate - Date.now()
+  );
+
+  const days = Math.floor(remaining / 86400000);
+  remaining %= 86400000;
+
+  const hours = Math.floor(remaining / 3600000);
+  remaining %= 3600000;
+
+  const minutes = Math.floor(remaining / 60000);
+  remaining %= 60000;
+
+  const seconds = Math.floor(remaining / 1000);
+
+  document.getElementById("days").textContent =
+    String(days).padStart(2, "0");
+
+  document.getElementById("hours").textContent =
+    String(hours).padStart(2, "0");
+
+  document.getElementById("minutes").textContent =
+    String(minutes).padStart(2, "0");
+
+  document.getElementById("seconds").textContent =
+    String(seconds).padStart(2, "0");
+
+  if (weddingDate <= Date.now()) {
+
+    document.getElementById("countdownText").textContent =
+      "يوم فرحتنا وصل! 🎉";
+
+  }
+
+}
+
+countdown();
+setInterval(countdown, 1000);
+
+/* مشاركة الدعوة عبر واتساب */
+
+document.getElementById("shareBtn").addEventListener("click", () => {
+
+  const message =
+    "💍 دعوة زفاف سعد وفاطمة ♡\n" +
+    "الجمعة ٤ ديسمبر ٢٠٢٦\n\n" +
+    window.location.origin +
+    window.location.pathname;
+
+  window.open(
+    "https://wa.me/?text=" + encodeURIComponent(message),
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+});
+
+/* صفحة تهنئة الضيوف */
+
+const guestName = document.getElementById("guestName");
+const guestMessage = document.getElementById("guestMessage");
+
+guestMessage.addEventListener("input", () => {
+
+  document.getElementById("counter").textContent =
+    guestMessage.value.length + " / 300";
+
+});
+
+document.getElementById("guestForm").addEventListener("submit", (event) => {
+
+  event.preventDefault();
+
+  const name = guestName.value.trim();
+  const message = guestMessage.value.trim();
+
+  if (!name || !message) {
+    return;
+  }
+
+  const text =
+    "💌 تهنئة إلى سعد وفاطمة\n\n" +
+    "من: " + name + "\n\n" +
+    message;
+
+  document.getElementById("guestStatus").textContent =
+    "هيفتح واتساب، اختار الشخص اللي هتبعتله التهنئة.";
+
+  window.open(
+    "https://wa.me/?text=" + encodeURIComponent(text),
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+});
+
+/* إضافة الموعد إلى التقويم */
+
+document.getElementById("calendarBtn").addEventListener("click", () => {
+
+  const calendar = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Wedding Invitation//AR",
+    "BEGIN:VEVENT",
+    "UID:saad-fatima-20261204",
+    "DTSTAMP:20261122T120000Z",
+    "DTSTART:20261204T150000Z",
+    "DTEND:20261204T210000Z",
+    "SUMMARY:حفل زفاف سعد وفاطمة",
+    "LOCATION:فيلا نعمة - المريوطية",
+    "DESCRIPTION:نتشرف بحضوركم",
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\r\n");
+
+  const blob = new Blob([calendar], {
+    type: "text/calendar;charset=utf-8"
+  });
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "saad-fatima-wedding.ics";
+
+  document.body.appendChild(link);
+
+  link.click();
+  link.remove();
+
+  setTimeout(() => {
+    URL.revokeObjectURL(url);
+  }, 1000);
+
+});
+
+</script>
+
+</body>
+</html>
