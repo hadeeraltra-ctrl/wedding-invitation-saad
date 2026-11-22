@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f8f1e6">
+<meta name="description" content="دعوة زفاف سعد وفاطمة - الجمعة 4 ديسمبر 2026">
 
 <title>سعد ♡ فاطمة | دعوة زفاف</title>
 
@@ -15,13 +16,13 @@
 
 <style>
 
-/* إعدادات عامة */
+/* ===== إعدادات عامة ===== */
 
 :root {
-  --gold: #e3c58d;
-  --gold-dark: #b99658;
+  --gold: #e6c991;
+  --gold-dark: #ac884e;
   --cream: #fff7e9;
-  --dark: #251c1b;
+  --dark: #29211e;
 }
 
 * {
@@ -34,9 +35,9 @@ html {
 
 body {
   margin: 0;
-  font-family: "El Messiri", sans-serif;
-  background: #34271f;
   color: var(--cream);
+  background: #29211e;
+  font-family: "El Messiri", sans-serif;
   overflow-x: hidden;
 }
 
@@ -59,42 +60,47 @@ button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid #ffe1a0;
+  outline: 3px solid #ffe2aa;
   outline-offset: 3px;
 }
 
-/* خلفية العروسين في جميع الصفحات */
+/* ===== خلفية جميع صفحات الدعوة ===== */
+
+/*
+  طبقتان:
+  الأولى صورة تغطي الشاشة بشكل ناعم.
+  الثانية إضاءة خفيفة لتحسين وضوح الكلام.
+*/
 
 .site-background {
   position: fixed;
-  inset: 0;
-  z-index: -2;
+  inset: -20px;
+  z-index: -3;
 
   background-image: url("./couple-background.jpg.jpeg");
-  background-color: #34271f;
-
-  background-size: contain;
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-}
 
-/* طبقة شفافة خفيفة */
+  filter: blur(14px);
+  transform: scale(1.06);
+}
 
 .site-overlay {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
 
   background: linear-gradient(
     180deg,
-    rgba(23,17,17,0.18),
-    rgba(23,17,17,0.30)
+    rgba(35, 25, 23, 0.30),
+    rgba(35, 25, 23, 0.48)
   );
 
   pointer-events: none;
 }
 
-/* غلاف البسملة */
+/* ===== غلاف البسملة ===== */
 
 #cover {
   position: fixed;
@@ -102,8 +108,8 @@ textarea:focus-visible {
   z-index: 100;
 
   display: flex;
-  align-items: flex-end;
   justify-content: center;
+  align-items: flex-end;
 
   background-color: #faf5e9;
   background-image: url("./cover-basmala.png");
@@ -120,11 +126,12 @@ textarea:focus-visible {
   pointer-events: none;
 }
 
-/* زر فتح الدعوة */
+/* ===== زر فتح الدعوة ===== */
 
 #openBtn {
-  position: fixed;
-  bottom: max(85px, env(safe-area-inset-bottom));
+  position: absolute;
+
+  bottom: max(80px, env(safe-area-inset-bottom));
   left: 50%;
 
   transform: translateX(-50%);
@@ -146,39 +153,58 @@ textarea:focus-visible {
   font-size: 18px;
   font-weight: bold;
 
-  box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.25);
 }
 
-/* باقي الأزرار */
+/* ===== صفحة صورة العروسين ===== */
 
-.button {
-  display: inline-block;
+.photo-page {
+  position: relative;
 
-  margin: 10px 4px;
-  padding: 13px 25px;
+  min-height: 100vh;
+  min-height: 100svh;
 
-  border: 1px solid #ebd5a9;
-  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  background: linear-gradient(
-    135deg,
-    #c9a76c,
-    #795829
-  );
-
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-
-  box-shadow: 0 5px 22px rgba(0,0,0,0.3);
+  padding: 35px 15px 90px;
+  text-align: center;
 }
 
-.button:hover,
-#openBtn:hover {
-  filter: brightness(1.08);
+.photo-frame {
+  width: min(100%, 720px);
+
+  padding: 12px;
+
+  border: 2px solid rgba(235,209,160,0.85);
+  border-radius: 22px;
+
+  background: rgba(255,248,235,0.10);
+  box-shadow: 0 15px 45px rgba(0,0,0,0.25);
 }
 
-/* صفحات الدعوة */
+.couple-photo {
+  display: block;
+
+  width: 100%;
+  max-height: 78svh;
+
+  object-fit: contain;
+
+  border-radius: 12px;
+}
+
+.photo-caption {
+  font-family: "Amiri", serif;
+  font-size: clamp(25px, 5vw, 37px);
+
+  color: #ffe3ad;
+
+  margin: 15px 0 5px;
+}
+
+/* ===== الصفحات ===== */
 
 .page {
   position: relative;
@@ -194,36 +220,34 @@ textarea:focus-visible {
 
   text-align: center;
 
-  border-bottom: 1px solid rgba(228,198,140,0.3);
+  border-bottom: 1px solid rgba(230,201,145,0.32);
 }
 
-/* صندوق الكتابة */
+/* ===== صندوق الكتابة ===== */
 
 .panel {
   width: 100%;
-  max-width: 720px;
+  max-width: 740px;
 
   padding: 35px;
 
-  background: rgba(28,20,20,0.32);
+  background: rgba(29,22,21,0.52);
 
-  border: 1px solid rgba(228,198,140,0.75);
+  border: 1px solid rgba(230,201,145,0.8);
   border-radius: 22px;
 
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-
-  box-shadow: 0 16px 45px rgba(0,0,0,0.15);
+  box-shadow: 0 14px 38px rgba(0,0,0,0.14);
 }
 
-/* العناوين */
+/* ===== الكتابة ===== */
 
 h1,
 h2 {
   font-family: "Amiri", serif;
+
   color: #ffe0a7;
 
-  margin: 10px 0 18px;
+  margin: 12px 0 20px;
   line-height: 1.4;
 }
 
@@ -247,6 +271,7 @@ p {
 
 .verse {
   font-family: "Amiri", serif;
+
   font-size: clamp(21px, 3.4vw, 30px);
   line-height: 1.9;
 }
@@ -259,11 +284,12 @@ p {
 
 .family {
   font-family: "Amiri", serif;
+
   font-size: clamp(27px, 4vw, 38px);
   color: #ffe1a6;
 }
 
-/* أسهم التنقل */
+/* ===== الأسهم ===== */
 
 .next {
   position: absolute;
@@ -275,11 +301,53 @@ p {
 
 .next b {
   display: block;
+
   font-size: 27px;
   line-height: 1;
 }
 
-/* العد التنازلي */
+/* ===== الأزرار ===== */
+
+.button {
+  display: inline-block;
+
+  margin: 10px 4px;
+  padding: 13px 25px;
+
+  border: 1px solid #ebd5a9;
+  border-radius: 40px;
+
+  background: linear-gradient(
+    135deg,
+    #c9a76c,
+    #795829
+  );
+
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.button:hover,
+#openBtn:hover {
+  filter: brightness(1.09);
+}
+
+/* ===== موعد الحفل ===== */
+
+.line {
+  padding: 14px 0;
+
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.line:last-child {
+  border-bottom: 0;
+}
+
+/* ===== العد التنازلي ===== */
 
 .countdown {
   display: grid;
@@ -293,10 +361,10 @@ p {
   min-width: 0;
   padding: 12px 3px;
 
-  border: 1px solid rgba(228,198,140,0.5);
+  border: 1px solid rgba(230,201,145,0.6);
   border-radius: 12px;
 
-  background: rgba(255,248,237,0.1);
+  background: rgba(255,248,237,0.12);
 }
 
 .time strong {
@@ -310,25 +378,16 @@ p {
   font-size: 13px;
 }
 
-.line {
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-}
-
-.line:last-child {
-  border: 0;
-}
-
-/* برنامج الحفل */
+/* ===== برنامج الحفل ===== */
 
 .program {
   margin: 12px 0;
   padding: 15px 8px;
 
-  border: 1px solid rgba(228,198,140,0.5);
+  border: 1px solid rgba(230,201,145,0.55);
   border-radius: 12px;
 
-  background: rgba(255,248,237,0.07);
+  background: rgba(255,248,237,0.10);
 
   font-size: clamp(17px, 2.5vw, 22px);
 }
@@ -338,7 +397,7 @@ p {
   margin-left: 10px;
 }
 
-/* صفحة التهنئة */
+/* ===== صفحة التهنئة ===== */
 
 form {
   text-align: right;
@@ -373,8 +432,10 @@ textarea {
 
 .counter {
   display: block;
+
   text-align: left;
   font-size: 13px;
+
   margin: 5px 0;
 }
 
@@ -389,7 +450,7 @@ form .button {
   font-size: 14px;
 }
 
-/* زر الموسيقى */
+/* ===== زر الموسيقى ===== */
 
 #musicBtn {
   position: fixed;
@@ -408,17 +469,16 @@ form .button {
   border-radius: 50%;
 
   background: #fff8e9;
-
   font-size: 25px;
 
-  box-shadow: 0 5px 24px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 24px rgba(0,0,0,0.25);
 }
 
 #musicBtn.visible {
   display: block;
 }
 
-/* الموبايل بالطول */
+/* ===== الموبايل بالطول ===== */
 
 @media (max-width: 600px) {
 
@@ -439,12 +499,20 @@ form .button {
     padding: 10px 2px;
   }
 
-  #cover {
-    background-size: contain;
+  .photo-page {
+    padding: 20px 12px 85px;
+  }
+
+  .photo-frame {
+    padding: 8px;
+  }
+
+  .couple-photo {
+    max-height: 73svh;
   }
 
   #openBtn {
-    bottom: max(95px, env(safe-area-inset-bottom));
+    bottom: max(90px, env(safe-area-inset-bottom));
     min-width: 175px;
     font-size: 16px;
   }
@@ -452,20 +520,16 @@ form .button {
   .button {
     padding: 12px 19px;
   }
-
-  .site-background {
-    background-size: contain;
-    background-position: center;
-  }
 }
 
-/* الموبايل بالعرض */
+/* ===== الموبايل بالعرض ===== */
 
 @media (orientation: landscape) and (max-height: 550px) {
 
   .page {
     min-height: 100svh;
     height: auto;
+
     padding: 35px 18px 70px;
   }
 
@@ -486,20 +550,25 @@ form .button {
     line-height: 1.65;
   }
 
+  .photo-page {
+    min-height: 100svh;
+    padding: 15px 20px 65px;
+  }
+
+  .photo-frame {
+    width: min(85%, 730px);
+  }
+
+  .couple-photo {
+    max-height: 65svh;
+  }
+
   .next {
     bottom: 11px;
   }
 
-  #cover {
-    background-size: contain;
-  }
-
   #openBtn {
-    bottom: 22px;
-  }
-
-  .site-background {
-    background-size: contain;
+    bottom: 20px;
   }
 
   .countdown {
@@ -512,7 +581,7 @@ form .button {
   }
 }
 
-/* الكمبيوتر */
+/* ===== الكمبيوتر ===== */
 
 @media (min-width: 1200px) {
 
@@ -523,9 +592,14 @@ form .button {
   .panel {
     max-width: 760px;
   }
+
+  .photo-frame {
+    max-width: 680px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   html {
     scroll-behavior: auto;
   }
@@ -540,7 +614,7 @@ form .button {
 
 <body>
 
-<!-- خلفية العروسين -->
+<!-- خلفية صفحات الدعوة -->
 
 <div class="site-background"></div>
 <div class="site-overlay"></div>
@@ -561,7 +635,7 @@ form .button {
 
 </div>
 
-<!-- زر التحكم في الموسيقى -->
+<!-- زر الموسيقى -->
 
 <button
   id="musicBtn"
@@ -573,7 +647,32 @@ form .button {
 
 <main>
 
-<!-- الصفحة الأولى: دعوة الزفاف -->
+<!-- الصفحة الأولى: صورة العروسين كاملة -->
+
+<section class="photo-page" id="photo">
+
+  <div class="photo-frame">
+
+    <img
+      class="couple-photo"
+      src="./couple-background.jpg.jpeg"
+      alt="صورة سعد وفاطمة"
+    >
+
+    <div class="photo-caption">
+      سعد ♡ فاطمة
+    </div>
+
+  </div>
+
+  <a class="next" href="#invitation">
+    شاهد الدعوة
+    <b>⌄</b>
+  </a>
+
+</section>
+
+<!-- الصفحة الثانية: دعوة الزفاف -->
 
 <section class="page" id="invitation">
 
@@ -617,7 +716,7 @@ form .button {
 
 </section>
 
-<!-- الصفحة الثانية: موعد الحفل -->
+<!-- الصفحة الثالثة: موعد الحفل -->
 
 <section class="page" id="when">
 
@@ -680,7 +779,7 @@ form .button {
 
 </section>
 
-<!-- الصفحة الثالثة: برنامج الحفل -->
+<!-- الصفحة الرابعة: برنامج الحفل -->
 
 <section class="page" id="program">
 
@@ -718,7 +817,7 @@ form .button {
 
 </section>
 
-<!-- الصفحة الرابعة: مكان الحفل -->
+<!-- الصفحة الخامسة: مكان الحفل -->
 
 <section class="page" id="venue">
 
@@ -736,7 +835,7 @@ form .button {
 
     <p>
       يسعدنا وصولكم ومشاركتنا فرحتنا.
-      افتحوا موقع القاعة مباشرةً على الخريطة.
+      اضغطوا على الزر لفتح موقع القاعة مباشرةً.
     </p>
 
     <a
@@ -757,7 +856,7 @@ form .button {
 
 </section>
 
-<!-- الصفحة الخامسة: مشاركة الدعوة -->
+<!-- الصفحة السادسة: مشاركة الدعوة -->
 
 <section class="page" id="share">
 
@@ -786,7 +885,7 @@ form .button {
 
 </section>
 
-<!-- الصفحة السادسة: تهنئة الضيوف -->
+<!-- الصفحة السابعة: تهنئة الضيوف -->
 
 <section class="page" id="guestbook">
 
@@ -842,7 +941,7 @@ form .button {
 
   </article>
 
-  <a class="next" href="#invitation">
+  <a class="next" href="#photo">
     بداية الدعوة
     <b>⌃</b>
   </a>
@@ -853,7 +952,7 @@ form .button {
 
 <script>
 
-/* إعدادات الموسيقى */
+/* ===== الموسيقى ===== */
 
 const music = document.getElementById("music");
 const musicBtn = document.getElementById("musicBtn");
@@ -879,9 +978,11 @@ function playMusic() {
     const request = music.play();
 
     if (request && request.catch) {
+
       request.catch(() => {
         syncMusic();
       });
+
     }
 
   } catch (error) {
@@ -890,7 +991,7 @@ function playMusic() {
 
 }
 
-/* محاولة تشغيل الأغنية فور فتح الرابط */
+/* محاولة التشغيل عند فتح الرابط */
 
 document.addEventListener("DOMContentLoaded", () => {
   playMusic();
@@ -904,7 +1005,7 @@ window.addEventListener("load", () => {
 
 });
 
-/* فتح الدعوة وتشغيل الصوت */
+/* فتح الدعوة وتشغيل الموسيقى */
 
 document.getElementById("openBtn").addEventListener("click", () => {
 
@@ -917,14 +1018,12 @@ document.getElementById("openBtn").addEventListener("click", () => {
   musicBtn.classList.add("visible");
 
   setTimeout(() => {
-
     cover.style.display = "none";
-
   }, 1050);
 
 });
 
-/* زر تشغيل وإيقاف الموسيقى */
+/* التحكم في الموسيقى */
 
 musicBtn.addEventListener("click", () => {
 
@@ -942,7 +1041,7 @@ music.addEventListener("error", syncMusic);
 
 syncMusic();
 
-/* العد التنازلي */
+/* ===== العد التنازلي ===== */
 
 const weddingDate = new Date(
   "2026-12-04T17:00:00+02:00"
@@ -990,7 +1089,7 @@ function countdown() {
 countdown();
 setInterval(countdown, 1000);
 
-/* مشاركة الدعوة عبر واتساب */
+/* ===== مشاركة الدعوة ===== */
 
 document.getElementById("shareBtn").addEventListener("click", () => {
 
@@ -1008,7 +1107,7 @@ document.getElementById("shareBtn").addEventListener("click", () => {
 
 });
 
-/* تهنئة الضيوف على رقم الواتساب */
+/* ===== تهنئة الضيوف عبر واتساب ===== */
 
 const guestName = document.getElementById("guestName");
 const guestMessage = document.getElementById("guestMessage");
@@ -1037,7 +1136,7 @@ document.getElementById("guestForm").addEventListener("submit", (event) => {
     message;
 
   document.getElementById("guestStatus").textContent =
-    "هيفتح واتساب بالتهنئة جاهزة للإرسال.";
+    "هيفتح واتساب والتهنئة جاهزة للإرسال.";
 
   window.open(
     "https://wa.me/201153918739?text=" + encodeURIComponent(text),
@@ -1047,7 +1146,7 @@ document.getElementById("guestForm").addEventListener("submit", (event) => {
 
 });
 
-/* إضافة الموعد إلى التقويم */
+/* ===== إضافة الموعد للتقويم ===== */
 
 document.getElementById("calendarBtn").addEventListener("click", () => {
 
